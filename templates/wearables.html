@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{data.titulo}}{% endblock %}
+
+{% block body %}
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="show-entries">
+                            <span>Mostrando</span>
+                            <select>
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                                <option>20</option>
+                            </select>
+                            <span>entradas</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h2 class="text-center">Dispositivos <b>Registrados a tu cuenta</b></h2>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <!-- Codigo a mostrar como boton superior de la tabla -->
+                        <div class="row">
+                            <button type="button" class="btn btn-success"><i class="fa fa-plus-square" aria-hidden="true"></i> Registrar</button>
+                            <button type="button" id="activate_new_btn" class="btn btn-info"><i class="fa fa-plus-square" aria-hidden="true"></i> Activar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre <i class="fa fa-sort"></i></th>
+                        <th>Apellido</th>
+                        <th>Codigo Activacion <i class="fa fa-sort"></i></th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in info %}
+                        <tr>
+                            <td>{{item['id']}}</td>
+                            <td>{{item['name']}}</td>
+                            <td>{{item['surname']}}</td>
+                            <td>{{item['wearable_activation_code']}}</td>
+                            <td>{% if item['active_status'] == 1 %}<p class="btn btn-success">Activo</p>{% else %}<p class="btn btn-danger">Inactivo</p>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Mostrando <b>5</b> de <b>25</b> entradas</div>
+                <ul class="pagination">
+                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
